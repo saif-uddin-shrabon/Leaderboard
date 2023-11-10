@@ -47,6 +47,7 @@ class LeaderBoardAdapter : ListAdapter<All, LeaderBoardAdapter.LeaderViewHolder>
             }else{
                 binding.gendar.text = item.gender
             }
+            binding.idea.text = item.level.toString()
 
           binding.coin.text = item.giftcoin.toString()
 
