@@ -84,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_regular"
                 android:padding="3dp"
+                android:textColor="@color/pink"
                 android:text="155"
                 android:textAlignment="center"
                 android:textSize="14dp" />
@@ -154,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Male"
+                android:textColor="@color/white"
                 android:fontFamily="@font/inter_regular"
                 android:textSize="14dp"
                 android:textAlignment="center" />

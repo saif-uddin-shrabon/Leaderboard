@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.algostack.leaderboard.R
 import com.algostack.leaderboard.databinding.FragmentLeaderboardHomeBinding
 import com.algostack.leaderboard.utlis.NetworkResult
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,6 +46,9 @@ class LeaderboardHome : Fragment() {
         binding.reclist.layoutManager = StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
         binding.reclist.adapter = adapter
 
+
+
+
          bindObservers()
     }
 
@@ -55,6 +60,37 @@ class LeaderboardHome : Fragment() {
             when(result){
                 is NetworkResult.Success -> {
                     if(result.data!!.status){
+
+                        for (i in result.data.data.host_daily.top3){
+                            if(i.position == 1){
+                                binding.top1name.text = i.first_name
+                                binding.coin1.text = i.giftcoin.toString()
+                                Glide.with(requireActivity())
+                                    .load(i.profile_pic)
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .placeholder(R.drawable.profile)
+                                    .error(R.drawable.profile)
+                                    .into(binding.top1img)
+                            }else if(i.position == 2){
+                                binding.top2name.text = i.first_name
+                                binding.coin2.text = i.giftcoin.toString()
+                                Glide.with(requireActivity())
+                                    .load(i.profile_pic)
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .placeholder(R.drawable.profile)
+                                    .error(R.drawable.profile)
+                                    .into(binding.top2img)
+                            }else if(i.position == 3){
+                                binding.top3name.text = i.first_name
+                                binding.coin3.text = i.giftcoin.toString()
+                                Glide.with(requireActivity())
+                                    .load(i.profile_pic)
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .placeholder(R.drawable.profile)
+                                    .error(R.drawable.profile)
+                                    .into(binding.top3img)
+                            }
+                        }
 
                         println("Check_response: ${result.data.data.host_daily.all}")
                         val allResult = result.data.data.host_daily.all
@@ -79,6 +115,8 @@ class LeaderboardHome : Fragment() {
 
 
     }
+
+
 
     fun showCustomAlertDialogBox(msg : String){
         val view = LayoutInflater.from(requireContext()).inflate(R.layout.custom_alert_box, null,false)
