@@ -1,5 +1,6 @@
 package com.algostack.leaderboard.services.model
 
+
 data class All(
     val first_name: String,
     val gender: String,

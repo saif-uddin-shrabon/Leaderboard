@@ -15,7 +15,7 @@ import com.algostack.leaderboard.databinding.FragmentSplashScreenBinding
 class SplashScreen : Fragment() {
 
     private var _binding : FragmentSplashScreenBinding ?= null
-    private val binding get() = _binding
+    private val binding get() =  _binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
