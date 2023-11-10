@@ -1,4 +1,4 @@
-package com.algostack.leaderboard
+package com.algostack.leaderboard.view
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
