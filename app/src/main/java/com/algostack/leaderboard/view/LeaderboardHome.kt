@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.algostack.leaderboard.R
 import com.algostack.leaderboard.databinding.FragmentLeaderboardHomeBinding
 import com.algostack.leaderboard.utlis.NetworkResult
+import com.algostack.leaderboard.viewmodel.LeaderboardViewmodel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,13 @@ class LeaderboardHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         leaderboardViewmodel.viewLeaderBoard()
+        if (leaderboardViewmodel.isInternetConnected(requireContext())){
+            leaderboardViewmodel.viewLeaderBoard()
+        }else{
+            showCustomAlertDialogBox(  "No Internet Connection")
+        }
+
+
 
         binding.reclist.layoutManager = StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
         binding.reclist.adapter = adapter

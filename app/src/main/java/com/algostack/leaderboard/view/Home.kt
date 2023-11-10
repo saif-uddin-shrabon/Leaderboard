@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import com.algostack.leaderboard.R
 import com.algostack.leaderboard.databinding.FragmentHomeBinding
 import com.algostack.leaderboard.utlis.NetworkResult
+import com.algostack.leaderboard.viewmodel.LeaderboardViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

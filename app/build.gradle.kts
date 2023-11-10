@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.algostack.leaderboard"
-        minSdk = 25
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -96,6 +96,8 @@ dependencies {
     //Lottie Animation
     val lottieVersion = "3.4.0"
     implementation ("com.airbnb.android:lottie:$lottieVersion")
+    // Progress animation
+    implementation ("com.airbnb.android:lottie:6.0.1")
 }
 kapt {
     correctErrorTypes = true
