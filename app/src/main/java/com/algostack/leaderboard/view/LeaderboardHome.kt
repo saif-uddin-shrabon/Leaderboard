@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.algostack.leaderboard.R
 import com.algostack.leaderboard.databinding.FragmentLeaderboardHomeBinding
@@ -24,11 +25,14 @@ class LeaderboardHome : Fragment() {
 
     private val leaderboardViewmodel by viewModels<LeaderboardViewmodel> ()
 
+    private lateinit var adapter: LeaderBoardAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
         _binding = FragmentLeaderboardHomeBinding.inflate(inflater,container,false)
 
+        adapter = LeaderBoardAdapter()
         return binding.root
     }
 
@@ -36,6 +40,10 @@ class LeaderboardHome : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
          leaderboardViewmodel.viewLeaderBoard()
+
+        binding.reclist.layoutManager = StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
+        binding.reclist.adapter = adapter
+
          bindObservers()
     }
 
@@ -49,6 +57,8 @@ class LeaderboardHome : Fragment() {
                     if(result.data!!.status){
 
                         println("Check_response: ${result.data.data.host_daily.all}")
+                        val allResult = result.data.data.host_daily.all
+                        adapter.submitList(allResult)
 
                     }else{
                         showCustomAlertDialogBox( result.message ?: "Something wrong")
