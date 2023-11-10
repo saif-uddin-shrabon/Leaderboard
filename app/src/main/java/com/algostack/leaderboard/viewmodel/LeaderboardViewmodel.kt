@@ -17,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LeaderboardViewmodel @Inject constructor(private val leaderboardRepository: LeaderboardRepository) : ViewModel() {
 
+    // Live data
     val leaderBoardLiveData : LiveData<NetworkResult<LeaderboardResponse>>
         get() =  leaderboardRepository.LidearboardResponseLiveData
 
@@ -42,7 +43,6 @@ class LeaderboardViewmodel @Inject constructor(private val leaderboardRepository
                   else -> false
               }
           }else -> {
-
                 // Use Deprecated method only on older devices
               val activeNetwork = connecttivityManager.activeNetworkInfo ?: return false
               return  when (activeNetwork.type){
