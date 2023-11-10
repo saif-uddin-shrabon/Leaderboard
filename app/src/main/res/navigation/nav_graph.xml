@@ -3,15 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/leaderboardHome">
-    <fragment
-        android:id="@+id/home"
-        android:name="com.algostack.leaderboard.view.Home"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+    app:startDestination="@id/splashScreen">
     <fragment
         android:id="@+id/leaderboardHome"
         android:name="com.algostack.leaderboard.view.LeaderboardHome"
         android:label="fragment_leaderboard_home"
         tools:layout="@layout/fragment_leaderboard_home" />
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.algostack.leaderboard.view.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_leaderboardHome"
+            app:destination="@id/leaderboardHome"
+            app:popUpTo="@id/splashScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
