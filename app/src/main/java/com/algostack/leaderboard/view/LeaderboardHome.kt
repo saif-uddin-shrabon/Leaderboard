@@ -3,37 +3,40 @@ package com.algostack.leaderboard.view
 import android.app.AlertDialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+
 import com.algostack.leaderboard.R
-import com.algostack.leaderboard.databinding.FragmentHomeBinding
+import com.algostack.leaderboard.databinding.FragmentLeaderboardHomeBinding
 import com.algostack.leaderboard.utlis.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class Home : Fragment() {
+class LeaderboardHome : Fragment() {
 
-    private var _binding : FragmentHomeBinding ?= null
-   private val binding = _binding!!
+   private var _binding: FragmentLeaderboardHomeBinding ?= null
+    private val binding get() = _binding!!
 
     private val leaderboardViewmodel by viewModels<LeaderboardViewmodel> ()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
+        _binding = FragmentLeaderboardHomeBinding.inflate(inflater,container,false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-      //  bindObservers()
+         leaderboardViewmodel.viewLeaderBoard()
+         bindObservers()
     }
 
     private fun bindObservers() {
@@ -91,6 +94,5 @@ class Home : Fragment() {
 
 
     }
-
 
 }

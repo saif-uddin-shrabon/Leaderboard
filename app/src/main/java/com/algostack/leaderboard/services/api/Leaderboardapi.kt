@@ -9,6 +9,6 @@ interface Leaderboardapi {
 //    @GET("/leaderboard.json")
 //    suspend fun getLeaderboadList() :
 
-    @GET("/leaderboard.json")
+    @GET("/mhasancse17/JsonFile/main/leaderboard.json")
     suspend fun getLeaderBoardList() : Response<LeaderboardResponse>
 }
