@@ -6,9 +6,6 @@ import retrofit2.http.GET
 
 
 interface Leaderboardapi {
-//    @GET("/leaderboard.json")
-//    suspend fun getLeaderboadList() :
-
     @GET("/mhasancse17/JsonFile/main/leaderboard.json")
     suspend fun getLeaderBoardList() : Response<LeaderboardResponse>
 }

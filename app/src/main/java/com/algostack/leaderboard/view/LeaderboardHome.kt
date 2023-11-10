@@ -42,6 +42,7 @@ class LeaderboardHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Check Internet connection
         if (leaderboardViewmodel.isInternetConnected(requireContext())){
             leaderboardViewmodel.viewLeaderBoard()
         }else{
@@ -49,11 +50,8 @@ class LeaderboardHome : Fragment() {
         }
 
 
-
         binding.reclist.layoutManager = StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
         binding.reclist.adapter = adapter
-
-
 
 
          bindObservers()
@@ -68,6 +66,7 @@ class LeaderboardHome : Fragment() {
                 is NetworkResult.Success -> {
                     if(result.data!!.status){
 
+                        // TOP3 response
                         for (i in result.data.data.host_daily.top3){
                             if(i.position == 1){
                                 binding.top1name.text = i.first_name
@@ -99,7 +98,7 @@ class LeaderboardHome : Fragment() {
                             }
                         }
 
-                        println("Check_response: ${result.data.data.host_daily.all}")
+                        // set all response in recycler adapter
                         val allResult = result.data.data.host_daily.all
                         adapter.submitList(allResult)
 
@@ -112,7 +111,7 @@ class LeaderboardHome : Fragment() {
                     showCustomAlertDialogBox( result.message ?: "Something went wrong")
                 }
                 is NetworkResult.Loading -> {
-
+                    // Loader can not implement
 
                 }
             }
@@ -125,7 +124,7 @@ class LeaderboardHome : Fragment() {
 
 
 
-    fun showCustomAlertDialogBox(msg : String){
+    private fun showCustomAlertDialogBox(msg : String){
         val view = LayoutInflater.from(requireContext()).inflate(R.layout.custom_alert_box, null,false)
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(view)

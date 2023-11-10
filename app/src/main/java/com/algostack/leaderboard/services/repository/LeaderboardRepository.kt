@@ -12,19 +12,18 @@ import javax.inject.Inject
 
 class LeaderboardRepository @Inject constructor(private val leaderboardapi: Leaderboardapi) {
 
+
     private val _LiderboardResponseLiveData = MutableLiveData<NetworkResult<LeaderboardResponse>> ()
     val LidearboardResponseLiveData : LiveData<NetworkResult<LeaderboardResponse>>
 
         get() = _LiderboardResponseLiveData
 
+    // api request
     suspend fun getLeaderboardList(){
         _LiderboardResponseLiveData.postValue(NetworkResult.Loading())
 
         try {
             val response = leaderboardapi.getLeaderBoardList()
-            val result = response.body()
-
-//            println("check_response: $result")
 
             if(response.isSuccessful && response.body() != null){
 

@@ -20,12 +20,15 @@ class LeaderboardViewmodel @Inject constructor(private val leaderboardRepository
     val leaderBoardLiveData : LiveData<NetworkResult<LeaderboardResponse>>
         get() =  leaderboardRepository.LidearboardResponseLiveData
 
+    // api request
     fun viewLeaderBoard(){
         viewModelScope.launch {
             leaderboardRepository.getLeaderboardList()
         }
     }
 
+
+    // check internet connection function
     fun isInternetConnected(context: Context): Boolean{
         val connecttivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 

@@ -24,7 +24,7 @@ class LeaderBoardAdapter : ListAdapter<All, LeaderBoardAdapter.LeaderViewHolder>
     override fun onBindViewHolder(holder: LeaderViewHolder, position: Int) {
 
           val item = getItem(position)
-        holder.bind(item)
+          holder.bind(item)
     }
 
     inner class LeaderViewHolder(private val binding: ListofItemBinding) :
