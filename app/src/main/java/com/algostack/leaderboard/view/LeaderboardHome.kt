@@ -30,6 +30,8 @@ class LeaderboardHome : Fragment() {
 
     private lateinit var adapter: LeaderBoardAdapter
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
@@ -42,13 +44,9 @@ class LeaderboardHome : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Check Internet connection
-        if (leaderboardViewmodel.isInternetConnected(requireContext())){
-            leaderboardViewmodel.viewLeaderBoard()
-        }else{
-            showCustomAlertDialogBox(  "No Internet Connection")
-        }
 
+        leaderboardViewmodel.applicationContext = requireContext()
+       leaderboardViewmodel.viewLeaderBoard()
 
         binding.reclist.layoutManager = StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
         binding.reclist.adapter = adapter
@@ -113,6 +111,10 @@ class LeaderboardHome : Fragment() {
                 is NetworkResult.Loading -> {
                     // Loader can not implement
 
+                }
+
+                else -> {
+                    showCustomAlertDialogBox( result.message ?: "Something went wrong")
                 }
             }
 

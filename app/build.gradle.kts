@@ -69,6 +69,8 @@ dependencies {
 
     // Saved state module for ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    kapt ("androidx.lifecycle:lifecycle-compiler:2.7.0-beta01")
 
     //navigation
     val nav_version = "2.6.0"
@@ -93,11 +95,19 @@ dependencies {
 
     // circle
     implementation ("de.hdodenhof:circleimageview:3.1.0")
-    //Lottie Animation
-    val lottieVersion = "3.4.0"
-    implementation ("com.airbnb.android:lottie:$lottieVersion")
+
     // Progress animation
     implementation ("com.airbnb.android:lottie:6.0.1")
+
+    //room
+    val room_version = "2.6.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-paging:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    annotationProcessor ("android.arch.persistence.room:compiler:1.1.1")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
 }
 kapt {
     correctErrorTypes = true
