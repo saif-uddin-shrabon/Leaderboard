@@ -1,6 +1,14 @@
 package com.algostack.leaderboard.services.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "leaderboard_top3"
+)
 data class Top3(
+    @PrimaryKey(autoGenerate = true)
+    val id : Int,
     val first_name: String,
     val gender: String,
     val giftcoin: Int,
